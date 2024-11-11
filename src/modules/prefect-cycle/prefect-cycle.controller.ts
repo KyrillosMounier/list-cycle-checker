@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, InternalServerErrorException, Post } from '@nestjs/common';
 import { PrefectCycleService } from './prefect-cycle.service';
 import { CycleInputDto } from '../../dtos/cycle-input.dto';
  import { ApiCycleCheckOperation, ApiCycleCheckBody, ApiCycleCheckResponse } from './swagger-cycle.decorator';
@@ -17,8 +17,13 @@ export class PrefectCycleController {
   @ApiCycleCheckBody
   @ApiCycleCheckResponse
   async checkPerfectCycles(@Body() data:CycleInputDto) {
-    const results=  this.prefectCycleService.processCycles(data);
-    return results;
+    try {
+      const results = await this.prefectCycleService.processCycles(data);
+      return results;
+    } catch (error) {
+      console.error('Error processing cycles:', error);
+      throw new InternalServerErrorException('Service error');
+    }
   }
 
 

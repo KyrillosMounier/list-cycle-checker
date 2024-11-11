@@ -34,7 +34,7 @@
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/KyrillosMounier/list-cycle-checker.git
-   cd your-repo-name
+   cd list-cycle-checker
    ```
 
 2. **Install Dependencies**:
@@ -92,17 +92,17 @@ The application includes both unit and end-to-end (E2E) tests. Jest is used as t
 
 - **Run Unit Tests**:
   ```bash
-  npm run test
+  yarn run test
   ```
 
 - **Run E2E Tests**:
   ```bash
-  npm run test:e2e
+  yarn run test:e2e
   ```
 
 - **Test Coverage**:
   ```bash
-  npm run test:cov
+  yarn run test:cov
   ```
 
 

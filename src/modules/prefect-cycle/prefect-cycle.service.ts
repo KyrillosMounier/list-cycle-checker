@@ -79,33 +79,47 @@ export class PrefectCycleService {
     return 'List has been sent to the queue for perfect cycle verification. Processing is underway.';
   }
   
+ /**
+ * Determines if the provided cycles (lists) in the data are perfect cycles.
+ * A perfect cycle occurs if each item in the list points to another item in the list, and after traversing the list,
+ * we return to the starting point, having visited every item exactly once.
+ * 
+ * @param data - An array of `CycleItemDto` objects, where each object represents a cycle list with a name and an array of indices.
+ * 
+ * @returns A `CycleOutputDto` object, which contains a boolean value for each cycle list's name, indicating whether the cycle is perfect (`true`) or not (`false`).
+ */
+public isPerfectCycle(data: CycleItemDto[]): CycleOutputDto {
+  // Initialize an empty object to hold the results of each cycle list (true or false).
+  const results: CycleOutputDto = {};
 
-  /**
-   * Check if the cycles are perfect.
-   */
-  public isPerfectCycle(data: CycleItemDto[]): CycleOutputDto {
-    const results: CycleOutputDto = {};
+  // Loop over each item in the provided data array.
+  for (const { listName, arr } of data) {
+    // Initialize a visited array to track the indices that have been visited.
+    const visited = new Array(arr.length).fill(false);
+    let index = 0;  // Start at the first index in the list.
+    let steps = 0;  // Counter to keep track of the number of steps taken.
 
-    for (const { listName, arr } of data) {
-      const visited = new Array(arr.length).fill(false);
-      let index = 0;
-      let steps = 0;
-
-      while (steps < arr.length) {
-        if (visited[index]) {
-          results[listName] = false;
-          break;
-        }
-        visited[index] = true;
-        index = arr[index];
-        steps++;
+    // Start a while loop for the array.
+    while (steps < arr.length) {
+      // If we revisit an already visited index, it means we're in a cycle, and it's not a perfect cycle.
+      if (visited[index]) {
+        results[listName] = false; // Mark this list as not a perfect cycle.
+        break; // Exit the loop.
       }
-
-      // Check if all elements were visited exactly once and we returned to index 0
-      results[listName] = steps === arr.length && index === 0;
+      visited[index] = true; // Mark the current index as visited.
+      index = arr[index]; // Move to the next index in the cycle as defined by the array.
+      steps++; // Increment the step count.
     }
 
-    console.log('results', results);
-    return results; // Return the final results object
+    // Check if we visited all elements exactly once and returned to index 0.
+    results[listName] = steps === arr.length && index === 0;
   }
+
+  // Log the final results for debugging purposes.
+  console.log('results', results);
+
+  // Return the results object, which contains the cycle validity for each list in the input data.
+  return results;
+}
+
 }

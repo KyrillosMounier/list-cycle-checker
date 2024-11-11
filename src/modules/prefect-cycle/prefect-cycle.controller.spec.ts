@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrefectCycleController } from './prefect-cycle.controller';
 import { PrefectCycleService } from './prefect-cycle.service';
@@ -72,7 +73,7 @@ describe('PrefectCycleController', () => {
         await controller.checkPerfectCycles(mockCycleData);
       } catch (e) {
         // Expect the controller to handle the error and return an HTTP error
-        expect(e.response.statusCode).toBe(HttpStatus.INTERNAL_SERVER_ERROR);
+        expect(e.response.statusCode).toBe(500);
         expect(e.response.message).toBe('Service error');
       }
     });
