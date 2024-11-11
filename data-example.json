@@ -1,0 +1,12 @@
+[
+    { "listName": "List A", "arr": [1, 2, 3, 0] },
+    { "listName": "List B", "arr": [0, 3, 2, 1] },
+    { "listName": "List C", "arr": [2, 0, 1, 3] },
+    { "listName": "List D", "arr": [3, 0, 1, 2] },
+    { "listName": "List E", "arr": [0, 1, 2, 3] },
+    { "listName": "List F", "arr": [1, 0, 3, 2] },
+    { "listName": "List G", "arr": [0, 1, 3, 2] },
+    { "listName": "List H", "arr": [3, 2, 1, 0] },
+    { "listName": "List I", "arr": [2, 3, 0, 1] },
+    { "listName": "List J", "arr": [1, 3, 2, 0] }
+  ]
