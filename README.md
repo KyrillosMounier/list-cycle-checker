@@ -79,7 +79,11 @@ If you need to test RabbitMQ messaging (asynchronous processing), you can start 
 ```bash
 yarn run consumer
 ```
+Make sure you setup RabbitMQ, Otherwise to set up RabbitMQ using Docker, you can use the following command to pull and run the official RabbitMQ Docker image:
 
+```bash
+docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
+```
 ## API Documentation
 API documentation is available through Swagger. Once the application is running, access the documentation at:
 
